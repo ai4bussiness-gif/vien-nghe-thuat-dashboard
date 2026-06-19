@@ -10,7 +10,6 @@ const { title, subtitle } = Astro.props;
 <header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30 shadow-sm">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="flex items-center justify-between h-16">
-      <!-- Left: Title -->
       <div class="flex items-center gap-3 min-w-0">
         <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-sm">
           VN
@@ -23,9 +22,7 @@ const { title, subtitle } = Astro.props;
         </div>
       </div>
 
-      <!-- Right: Nav + Dark toggle -->
       <div class="flex items-center gap-1 sm:gap-2">
-        <!-- Section nav pills -->
         <nav class="hidden md:flex items-center gap-1 mr-2">
           <a href="#events" class="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
             Sự kiện
@@ -35,12 +32,12 @@ const { title, subtitle } = Astro.props;
           </a>
         </nav>
 
-        <!-- Dark mode toggle -->
-        <button id="dark-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors" title="Chuyển giao diện" aria-label="Chuyển giao diện sáng/tối">
-          <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Dark mode toggle: 2 icons, swap visibility -->
+        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 transition-colors" title="Chuyển giao diện">
+          <svg id="icon-sun" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
           </svg>
-          <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="icon-moon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
           </svg>
         </button>
@@ -49,13 +46,33 @@ const { title, subtitle } = Astro.props;
   </div>
 </header>
 
-<script>
-  const toggle = document.getElementById('dark-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle('dark');
-      localStorage.setItem('dark', isDark);
+<script is:inline>
+  (function() {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var html = document.documentElement;
+    var sun = document.getElementById('icon-sun');
+    var moon = document.getElementById('icon-moon');
+    
+    function setTheme(dark) {
+      if (dark) {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        if (sun) sun.classList.add('hidden');
+        if (moon) moon.classList.remove('hidden');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        if (sun) sun.classList.remove('hidden');
+        if (moon) moon.classList.add('hidden');
+      }
+    }
+    
+    // Init icons to match current mode
+    setTheme(html.classList.contains('dark'));
+    
+    btn.addEventListener('click', function() {
+      setTheme(!html.classList.contains('dark'));
     });
-  }
+  })();
 </script>
