@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import EventTimeline from '../components/EventTimeline.astro';
+import SpaceCalendar from '../components/SpaceCalendar.astro';
+---
+
+<Layout>
+  <Header
+    title="Dashboard Viện Nghệ Thuật"
+    subtitle="Cập nhật hoạt động các trung tâm"
+  />
+  <main class="max-w-6xl mx-auto px-4">
+    <EventTimeline />
+    <SpaceCalendar />
+  </main>
+</Layout>

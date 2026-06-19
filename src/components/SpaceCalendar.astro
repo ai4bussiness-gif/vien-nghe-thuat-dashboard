@@ -1,0 +1,146 @@
+---
+import { spaces, type SpaceBooking } from '../data/spaces';
+
+const CENTER_COLORS: Record<string, string> = {
+  'Nội Thất': '#3B82F6',
+  'Điêu Khắc': '#10B981',
+  'In & Ấn Loát': '#F59E0B',
+  'Đào Tạo': '#8B5CF6',
+};
+
+const TYPE_ICONS: Record<string, string> = {
+  exhibition: '🖼️',
+  event: '🎪',
+  class: '📚',
+};
+
+const FLOOR_LABELS: Record<number, string> = {
+  1: 'Tầng 1 — Triển lãm',
+  2: 'Tầng 2 — Sự kiện',
+  3: 'Tầng 3 — Lớp học',
+};
+
+const DAYS = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+
+// Generate this week dates
+const today = new Date();
+const monday = new Date(today);
+monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+const weekDates = DAYS.map((_, i) => {
+  const d = new Date(monday);
+  d.setDate(monday.getDate() + i);
+  return d;
+});
+
+function formatDate(d: Date) {
+  return `${d.getDate()}/${d.getMonth() + 1}`;
+}
+
+function getBooking(spaceId: string, date: Date): SpaceBooking | undefined {
+  const dateStr = date.toISOString().split('T')[0];
+  return spaces.bookings.find(
+    (b) => b.spaceId === spaceId && b.date === dateStr && b.status !== 'cancelled'
+  );
+}
+
+function statusBadge(status: string) {
+  if (status === 'approved') return 'bg-green-100 text-green-700 text-xs px-1.5 py-0.5 rounded';
+  return 'bg-yellow-100 text-yellow-700 text-xs px-1.5 py-0.5 rounded';
+}
+---
+
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <h2 class="text-xl font-bold text-gray-800 mb-1">Không Gian Viện</h2>
+  <p class="text-sm text-gray-500 mb-6">Tình trạng sử dụng trong tuần</p>
+
+  {
+    Object.entries(FLOOR_LABELS).map(([_floor, label]) => {
+      const floorNum = parseInt(_floor);
+      const floorSpaces = spaces.items.filter(s => s.floor === floorNum && s.isActive);
+      if (floorSpaces.length === 0) return null;
+
+      return (
+        <div class="mb-8">
+          <h3 class="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">{label}</h3>
+
+          {/* Desktop: grid */}
+          <div class="hidden md:block overflow-hidden rounded-lg border border-gray-200">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="text-left px-4 py-2.5 font-medium text-gray-600 w-36">Không Gian</th>
+                  {weekDates.map(d => (
+                    <th class="text-center px-2 py-2.5 font-medium text-gray-600">
+                      {DAYS[weekDates.indexOf(d)]}<br/>
+                      <span class="text-xs text-gray-400">{formatDate(d)}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {floorSpaces.map(space => (
+                  <tr class="border-t border-gray-100 hover:bg-gray-50">
+                    <td class="px-4 py-3 font-medium text-gray-700">
+                      <span class="mr-1.5">{TYPE_ICONS[space.type]}</span>
+                      {space.name}
+                      <span class="text-xs text-gray-400 ml-1">({space.capacity} ng)</span>
+                    </td>
+                    {weekDates.map(d => {
+                      const booking = getBooking(space.id, d);
+                      return (
+                        <td class="px-2 py-2 text-center align-middle">
+                          {booking ? (
+                            <div class="rounded px-2 py-1.5 text-xs" style={`background-color: ${CENTER_COLORS[booking.center]}15; border-left: 3px solid ${CENTER_COLORS[booking.center]}`}>
+                              <div class="font-medium truncate max-w-[100px]" style={`color: ${CENTER_COLORS[booking.center]}`}>
+                                {booking.title}
+                              </div>
+                              <div class="text-gray-500 text-[10px]">{booking.startTime}–{booking.endTime}</div>
+                              <span class={statusBadge(booking.status)}>
+                                {booking.status === 'approved' ? 'Đã duyệt' : 'Chờ'}
+                              </span>
+                            </div>
+                          ) : (
+                            <span class="text-gray-300 text-xs">Trống</span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile: cards */}
+          <div class="md:hidden space-y-4">
+            {floorSpaces.map(space => (
+              <div class="bg-white rounded-lg border border-gray-200 p-3">
+                <div class="font-medium text-gray-700 mb-2">
+                  {TYPE_ICONS[space.type]} {space.name}
+                  <span class="text-xs text-gray-400 ml-1">({space.capacity} ng)</span>
+                </div>
+                {weekDates.map(d => {
+                  const booking = getBooking(space.id, d);
+                  return (
+                    <div class="flex items-center gap-2 py-1.5 border-b border-gray-50 last:border-0">
+                      <span class="text-xs text-gray-500 w-8 font-medium">{DAYS[weekDates.indexOf(d)]}</span>
+                      {booking ? (
+                        <div class="flex-1 text-xs rounded px-2 py-1" style={`background-color: ${CENTER_COLORS[booking.center]}15; border-left: 2px solid ${CENTER_COLORS[booking.center]}`}>
+                          <span class="font-medium" style={`color: ${CENTER_COLORS[booking.center]}`}>{booking.title}</span>
+                          <span class="text-gray-500 ml-1">{booking.startTime}</span>
+                          <span class={statusBadge(booking.status)}>{booking.status === 'approved' ? '✓' : '○'}</span>
+                        </div>
+                      ) : (
+                        <span class="text-xs text-gray-300">Trống</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })
+  }
+</div>

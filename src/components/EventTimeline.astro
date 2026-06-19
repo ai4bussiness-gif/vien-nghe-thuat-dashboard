@@ -1,0 +1,124 @@
+---
+import { events } from '../data/events';
+import EventCard from './EventCard.astro';
+
+const centers = ['Nội Thất', 'Điêu Khắc', 'In & Ấn Loát', 'Đào Tạo'];
+
+const sorted = [...events].sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+
+const dayNames = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+
+function formatGroupDate(date: Date): string {
+  const day = dayNames[date.getDay()];
+  const d = date.getDate().toString().padStart(2, '0');
+  const m = (date.getMonth() + 1).toString().padStart(2, '0');
+  return `${day}, ${d}/${m}/${date.getFullYear()}`;
+}
+
+type Group = { key: string; label: string; events: typeof sorted };
+
+const groups: Group[] = [];
+const seen = new Map<string, Group>();
+
+for (const event of sorted) {
+  const key = `${event.startDate.getFullYear()}-${event.startDate.getMonth()}-${event.startDate.getDate()}`;
+  if (!seen.has(key)) {
+    const group: Group = { key, label: formatGroupDate(event.startDate), events: [] };
+    seen.set(key, group);
+    groups.push(group);
+  }
+  seen.get(key)!.events.push(event);
+}
+---
+
+<div class="space-y-6">
+  <!-- Filter buttons -->
+  <div class="flex flex-wrap gap-2">
+    <button data-filter="all" class="filter-btn active-filter px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+      Tất cả
+    </button>
+    {centers.map(center => (
+      <button data-filter={center} class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+        {center}
+      </button>
+    ))}
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="hidden text-center py-14 text-gray-400">
+    <svg class="w-12 h-12 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    <p class="text-sm font-medium">Không có sự kiện</p>
+  </div>
+
+  <!-- Timeline -->
+  <div id="timeline-groups" class="space-y-8">
+    {groups.map(group => (
+      <div class="date-group" data-group-key={group.key}>
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest whitespace-nowrap">
+            {group.label}
+          </span>
+          <div class="flex-1 h-px bg-gray-100"></div>
+        </div>
+        <div class="space-y-3">
+          {group.events.map(event => (
+            <div data-event-center={event.center}>
+              <EventCard event={event} />
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .filter-btn {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  .filter-btn:hover {
+    background-color: #e5e7eb;
+  }
+  .filter-btn.active-filter {
+    background-color: #111827;
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const groups = document.querySelectorAll<HTMLElement>('.date-group');
+  const emptyState = document.getElementById('empty-state')!;
+
+  function applyFilter(filter: string) {
+    buttons.forEach(btn => {
+      btn.classList.toggle('active-filter', btn.dataset.filter === filter);
+    });
+
+    let totalVisible = 0;
+
+    groups.forEach(group => {
+      const cards = group.querySelectorAll<HTMLElement>('[data-event-center]');
+      let groupVisible = 0;
+
+      cards.forEach(card => {
+        const matches = filter === 'all' || card.dataset.eventCenter === filter;
+        card.classList.toggle('hidden', !matches);
+        if (matches) groupVisible++;
+      });
+
+      group.classList.toggle('hidden', groupVisible === 0);
+      totalVisible += groupVisible;
+    });
+
+    emptyState.classList.toggle('hidden', totalVisible > 0);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'all'));
+  });
+</script>
