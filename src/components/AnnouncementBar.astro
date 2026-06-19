@@ -1,0 +1,42 @@
+---
+export interface Announcement {
+  id: string;
+  text: string;
+  type: 'info' | 'warning' | 'urgent';
+  date?: string;
+}
+
+export interface Props {
+  announcements: Announcement[];
+}
+
+const { announcements } = Astro.props;
+
+const TYPE_STYLES: Record<string, { bg: string; border: string; icon: string; label: string }> = {
+  urgent: { bg: 'bg-red-50 dark:bg-red-950/40', border: 'border-red-300 dark:border-red-800', icon: '🔴', label: 'Khẩn' },
+  warning: { bg: 'bg-yellow-50 dark:bg-yellow-950/40', border: 'border-yellow-300 dark:border-yellow-800', icon: '🟡', label: 'Lưu ý' },
+  info: { bg: 'bg-blue-50 dark:bg-blue-950/40', border: 'border-blue-300 dark:border-blue-800', icon: '🔵', label: 'Thông báo' },
+};
+---
+
+{
+  announcements.length > 0 && (
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+      {announcements.map(ann => {
+        const s = TYPE_STYLES[ann.type];
+        return (
+          <div class={`flex items-start gap-3 px-4 py-3 rounded-lg border ${s.bg} ${s.border} mb-2`}>
+            <span class="text-lg flex-shrink-0 mt-0.5">{s.icon}</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{s.label}</span>
+                {ann.date && <span class="text-xs text-gray-400 dark:text-gray-500">{ann.date}</span>}
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-200">{ann.text}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )
+}

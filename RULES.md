@@ -37,3 +37,10 @@
 - Nếu build ra HTML trắng: build không có Cloudflare adapter để thấy lỗi thật
 - Lỗi "Cannot read properties of undefined (reading 'filter')" → kiểm tra tên biến import
 - Lỗi "empty page" → kiểm tra Layout có import global.css không
+
+## Dark Mode
+- Layout có `<html class="">` + script khôi phục từ localStorage
+- Button #dark-toggle toggle class 'dark' trên <html>
+- CSS: dùng `.dark .xyz` cho component-specific, hoặc `dark:` utility của Tailwind
+- Component nào cũng cần dark variant — nếu thiếu thì thêm dark:text-* và dark:bg-*
+- SpaceCalendar, EventCard, AnnouncementBar đã có dark mode

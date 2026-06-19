@@ -1,8 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
 import EventTimeline from '../components/EventTimeline.astro';
 import SpaceCalendar from '../components/SpaceCalendar.astro';
+
+const announcements = [
+  {
+    id: 'a1',
+    text: 'Lịch họp giao ban tháng 7 sẽ diễn ra vào ngày 25/06 tại P.201. Đề nghị các trung tâm chuẩn bị báo cáo.',
+    type: 'warning' as const,
+    date: '20/06/2025',
+  },
+  {
+    id: 'a2',
+    text: 'Triển lãm "Nghệ thuật In ấn Đương đại 2025" đã chính thức mở đơn đăng ký. Hạn cuối 15/07.',
+    type: 'info' as const,
+    date: '18/06/2025',
+  },
+];
 ---
 
 <Layout>
@@ -10,8 +26,23 @@ import SpaceCalendar from '../components/SpaceCalendar.astro';
     title="Dashboard Viện Nghệ Thuật"
     subtitle="Cập nhật hoạt động các trung tâm"
   />
-  <main class="max-w-6xl mx-auto px-4">
-    <EventTimeline />
-    <SpaceCalendar />
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+    <AnnouncementBar announcements={announcements} />
+
+    <section id="events" class="scroll-mt-20">
+      <div class="flex items-center gap-3 mt-6 mb-4">
+        <div class="w-1 h-6 bg-indigo-500 rounded-full"></div>
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">Sự kiện & Lịch họp</h2>
+      </div>
+      <EventTimeline />
+    </section>
+
+    <section id="spaces" class="scroll-mt-20">
+      <div class="flex items-center gap-3 mt-10 mb-4">
+        <div class="w-1 h-6 bg-emerald-500 rounded-full"></div>
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">Không gian Viện</h2>
+      </div>
+      <SpaceCalendar />
+    </section>
   </main>
 </Layout>
