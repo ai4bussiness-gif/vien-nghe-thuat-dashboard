@@ -38,7 +38,13 @@ Out of bounds:
 - [x] Vòng 2: Claude — Schema Supabase SQL (✅ events, spaces, bookings)
 - [ ] Vòng 3: Claude — Component EventCard + filter
 - [ ] Vòng 4: Claude — Component lịch không gian
-- [ ] Vòng 5: Git + Deploy Cloudflare
+- [x] Vòng 5: Git + Deploy Cloudflare (✅ GitHub + Worker live)
+
+## Cycle 1 — Kết quả
+- Dashboard: https://vien-nghe-thuat.ai4bussiness.workers.dev
+- GitHub: https://github.com/ai4bussiness-gif/vien-nghe-thuat-dashboard
+- Deploy: Cloudflare Worker (static assets)
+- Dùng: 10/10 Claude calls, ~$0.97 token cost
 
 ## Center colors
 - Nội thất: #3B82F6 (xanh dương)

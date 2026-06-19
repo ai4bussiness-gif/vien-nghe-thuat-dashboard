@@ -1,5 +1,5 @@
 ---
-import { spaces, type SpaceBooking } from '../data/spaces';
+import { spaces, spaceBookings, type SpaceBooking } from '../data/spaces';
 
 const CENTER_COLORS: Record<string, string> = {
   'Nội Thất': '#3B82F6',
@@ -38,8 +38,11 @@ function formatDate(d: Date) {
 
 function getBooking(spaceId: string, date: Date): SpaceBooking | undefined {
   const dateStr = date.toISOString().split('T')[0];
-  return spaces.bookings.find(
-    (b) => b.spaceId === spaceId && b.date === dateStr && b.status !== 'cancelled'
+  return spaceBookings.find(
+    (b) => {
+      const bDate = b.date.toISOString().split('T')[0];
+      return b.spaceId === spaceId && bDate === dateStr && b.status !== 'cancelled';
+    }
   );
 }
 
@@ -56,7 +59,7 @@ function statusBadge(status: string) {
   {
     Object.entries(FLOOR_LABELS).map(([_floor, label]) => {
       const floorNum = parseInt(_floor);
-      const floorSpaces = spaces.items.filter(s => s.floor === floorNum && s.isActive);
+      const floorSpaces = spaces.filter(s => s.floor === floorNum && s.isActive);
       if (floorSpaces.length === 0) return null;
 
       return (
