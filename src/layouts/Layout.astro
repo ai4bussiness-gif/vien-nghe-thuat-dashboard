@@ -9,7 +9,7 @@ const { title = 'Dashboard Viện Nghệ Thuật' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,14 +17,11 @@ const { title = 'Dashboard Viện Nghệ Thuật' } = Astro.props;
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<script is:inline>
-			// Dark mode: khôi phục trước khi render
-			if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-				document.documentElement.classList.add('dark');
-			}
-		</script>
+		<script>(function(){if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark')}})()</script>
 	</head>
 	<body class="bg-gray-50 text-gray-900 min-h-screen dark:bg-gray-950 dark:text-gray-100 transition-colors duration-200">
 		<slot />
 	</body>
 </html>
+
+<script>(function(){var b=document.getElementById('theme-toggle');if(!b)return;var h=document.documentElement;var s=document.getElementById('icon-sun');var m=document.getElementById('icon-moon');function t(d){h.classList.toggle('dark',d);localStorage.setItem('theme',d?'dark':'light');if(s)s.classList.toggle('hidden',d);if(m)m.classList.toggle('hidden',!d)}t(h.classList.contains('dark'));b.onclick=function(){t(!h.classList.contains('dark'))}})()</script>
