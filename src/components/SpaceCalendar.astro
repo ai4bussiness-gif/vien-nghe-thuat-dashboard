@@ -2,10 +2,12 @@
 import { spaces, spaceBookings, type SpaceBooking } from '../data/spaces';
 
 const CENTER_COLORS: Record<string, string> = {
-  'Nội Thất': '#3B82F6',
-  'Điêu Khắc': '#10B981',
-  'In & Ấn Loát': '#F59E0B',
-  'Đào Tạo': '#8B5CF6',
+  'Trung tâm thiết kế nội ngoại thất': '#3B82F6',
+  'Trung tâm điêu khắc': '#10B981',
+  'Trung tâm in và ấn loát nghệ thuật': '#F59E0B',
+  'Trung tâm quản lý và đào tạo': '#8B5CF6',
+  'Trung tâm mô hình thực nghiệm': '#06B6D4',
+  'Trung tâm thời trang': '#EC4899',
 };
 
 const TYPE_ICONS: Record<string, string> = {
@@ -54,7 +56,7 @@ function statusBadge(status: string) {
 
 <div class="max-w-6xl mx-auto px-4 py-8">
   <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Không Gian Viện</h2>
-  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Tình trạng sử dụng trong tuần</p>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Tình trạng sử dụng trong tuần — <strong>{formatDate(monday)} – {formatDate(weekDates[6])}/{monday.getFullYear()}</strong></p>
 
   {
     Object.entries(FLOOR_LABELS).map(([_floor, label]) => {

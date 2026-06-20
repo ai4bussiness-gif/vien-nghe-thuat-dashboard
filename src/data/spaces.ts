@@ -72,7 +72,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb1",
     spaceId: "p101",
-    center: "Nội Thất",
+    center: "Trung tâm thiết kế nội ngoại thất",
     title: "Triển lãm nội thất đương đại",
     date: new Date("2026-06-16T00:00:00Z"),
     startTime: "09:00",
@@ -82,7 +82,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb2",
     spaceId: "p102",
-    center: "Điêu Khắc",
+    center: "Trung tâm điêu khắc",
     title: "Trưng bày điêu khắc",
     date: new Date("2026-06-16T00:00:00Z"),
     startTime: "10:00",
@@ -92,7 +92,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb3",
     spaceId: "p201",
-    center: "Đào Tạo",
+    center: "Trung tâm quản lý và đào tạo",
     title: "Hội thảo kỹ năng hiện đại",
     date: new Date("2026-06-17T00:00:00Z"),
     startTime: "08:30",
@@ -102,7 +102,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb4",
     spaceId: "p301",
-    center: "Điêu Khắc",
+    center: "Trung tâm điêu khắc",
     title: "Lớp điêu khắc cơ bản",
     date: new Date("2026-06-18T00:00:00Z"),
     startTime: "14:00",
@@ -112,7 +112,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb6",
     spaceId: "p202",
-    center: "Nội Thất",
+    center: "Trung tâm thiết kế nội ngoại thất",
     title: "Họp dự án nội thất",
     date: new Date("2026-06-19T00:00:00Z"),
     startTime: "14:00",
@@ -122,7 +122,7 @@ export const spaceBookings: SpaceBooking[] = [
   {
     id: "sb8",
     spaceId: "p201",
-    center: "In & Ấn Loát",
+    center: "Trung tâm in và ấn loát nghệ thuật",
     title: "Triển lãm in nghệ thuật",
     date: new Date("2026-06-21T00:00:00Z"),
     startTime: "10:00",

@@ -5,28 +5,40 @@ import CenterCard from '../components/CenterCard.astro';
 
 const centers = [
   {
-    name: 'Trung tâm Thiết Kế Nội Thất',
+    name: 'Trung tâm thiết kế nội ngoại thất',
     description: 'Không gian sống là trang thơ đầu tiên mà con người viết lên cuộc đời mình. Trung tâm đào tạo những nhà thiết kế thấu hiểu chiều sâu cảm xúc lẫn tính năng kỹ thuật của không gian — từ căn hộ đô thị đến biệt thự nghỉ dưỡng, từ phòng trưng bày nghệ thuật đến không gian làm việc sáng tạo.',
     color: '#3B82F6',
     colorClass: 'blue',
   },
   {
-    name: 'Trung tâm Điêu Khắc',
+    name: 'Trung tâm điêu khắc',
     description: 'Điêu khắc là nghệ thuật chiếm lĩnh không gian. Chương trình đan xen giữa truyền thống điêu khắc cổ điển châu Âu và tư duy đương đại — từ tượng chân dung đến sắp đặt không gian, từ phù điêu kiến trúc đến điêu khắc công cộng.',
     color: '#10B981',
     colorClass: 'emerald',
   },
   {
-    name: 'Trung tâm In & Ấn Loát',
+    name: 'Trung tâm in và ấn loát nghệ thuật',
     description: 'Gìn giữ và phát triển kỹ thuật in truyền thống như khắc gỗ, khắc kẽm, in lưới và in lithography, đồng thời tích hợp công nghệ in kỹ thuật số. Nơi con chữ được đặt vào vị trí xứng đáng: một hình thức nghệ thuật độc lập.',
     color: '#F59E0B',
     colorClass: 'amber',
   },
   {
-    name: 'Trung tâm Đào Tạo & Bồi Dưỡng',
+    name: 'Trung tâm quản lý và đào tạo',
     description: 'Cánh tay nối dài của Viện đến với cộng đồng — từ chương trình ngắn hạn cho người yêu nghệ thuật đến khóa bồi dưỡng chuyên sâu dành cho giáo viên mỹ thuật và chuyên gia. Điều phối hợp tác quốc tế và dự án nghệ thuật cộng đồng.',
     color: '#8B5CF6',
     colorClass: 'purple',
+  },
+  {
+    name: 'Trung tâm mô hình thực nghiệm',
+    description: 'Trung tâm chuyên về in 3D, mô phỏng kiến trúc, prototyping và thực nghiệm vật liệu — nơi ý tưởng được kiểm chứng bằng mô hình thực tế trước khi bước vào sản xuất.',
+    color: '#06B6D4',
+    colorClass: 'cyan',
+  },
+  {
+    name: 'Trung tâm thời trang',
+    description: 'Nơi nghệ thuật may mặc gặp gỡ thiết kế bền vững. Trung tâm đào tạo và sáng tạo các bộ sưu tập thời trang ứng dụng — từ kỹ thuật cắt may cổ điển đến công nghệ dệt may thông minh.',
+    color: '#EC4899',
+    colorClass: 'pink',
   },
 ];
 
@@ -126,9 +138,9 @@ const activities = [
     <!-- Bốn trung tâm -->
     <section>
       <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
-        Bốn Trung Tâm Chuyên Ngành
+        Sáu Trung Tâm Chuyên Ngành
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {centers.map((center) => (
           <CenterCard
             name={center.name}

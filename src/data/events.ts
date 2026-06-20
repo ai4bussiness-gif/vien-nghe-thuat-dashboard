@@ -15,7 +15,7 @@ export const events: Event[] = [
   {
     id: "1",
     title: "Họp kế hoạch quý 3",
-    center: "Nội Thất",
+    center: "Trung tâm thiết kế nội ngoại thất",
     centerColor: "#3B82F6",
     eventType: "meeting",
     description: "Lên kế hoạch và phân công nhiệm vụ cho quý 3 năm 2026",
@@ -26,7 +26,7 @@ export const events: Event[] = [
   {
     id: "2",
     title: "Lớp điêu khắc gỗ cơ bản",
-    center: "Điêu Khắc",
+    center: "Trung tâm điêu khắc",
     centerColor: "#10B981",
     eventType: "class",
     description:
@@ -38,7 +38,7 @@ export const events: Event[] = [
   {
     id: "3",
     title: "Triển lãm in nghệ thuật mùa hè",
-    center: "In & Ấn Loát",
+    center: "Trung tâm in và ấn loát nghệ thuật",
     centerColor: "#F59E0B",
     eventType: "event",
     description:
@@ -50,7 +50,7 @@ export const events: Event[] = [
   {
     id: "4",
     title: "Khai giảng khóa thiết kế đồ họa",
-    center: "Đào Tạo",
+    center: "Trung tâm quản lý và đào tạo",
     centerColor: "#8B5CF6",
     eventType: "class",
     description:
@@ -62,7 +62,7 @@ export const events: Event[] = [
   {
     id: "5",
     title: "Deadline nộp hồ sơ dự án nội thất",
-    center: "Nội Thất",
+    center: "Trung tâm thiết kế nội ngoại thất",
     centerColor: "#3B82F6",
     eventType: "deadline",
     description:
@@ -74,7 +74,7 @@ export const events: Event[] = [
   {
     id: "6",
     title: "Khai mạc triển lãm điêu khắc",
-    center: "Điêu Khắc",
+    center: "Trung tâm điêu khắc",
     centerColor: "#10B981",
     eventType: "event",
     description:
@@ -86,7 +86,7 @@ export const events: Event[] = [
   {
     id: "7",
     title: "Họp đánh giá quy trình in ấn",
-    center: "In & Ấn Loát",
+    center: "Trung tâm in và ấn loát nghệ thuật",
     centerColor: "#F59E0B",
     eventType: "meeting",
     description:
@@ -98,7 +98,7 @@ export const events: Event[] = [
   {
     id: "8",
     title: "Hội thảo đào tạo kỹ năng hiện đại",
-    center: "Đào Tạo",
+    center: "Trung tâm quản lý và đào tạo",
     centerColor: "#8B5CF6",
     eventType: "event",
     description:
@@ -110,7 +110,7 @@ export const events: Event[] = [
   {
     id: "9",
     title: "Workshop thiết kế nội thất sáng tạo",
-    center: "Nội Thất",
+    center: "Trung tâm thiết kế nội ngoại thất",
     centerColor: "#3B82F6",
     eventType: "class",
     description:
@@ -122,7 +122,7 @@ export const events: Event[] = [
   {
     id: "10",
     title: "Deadline nộp tác phẩm thi điêu khắc",
-    center: "Điêu Khắc",
+    center: "Trung tâm điêu khắc",
     centerColor: "#10B981",
     eventType: "deadline",
     description:
@@ -130,5 +130,29 @@ export const events: Event[] = [
     location: "Online",
     startDate: new Date("2026-06-21T23:59:00"),
     endDate: new Date("2026-06-21T23:59:00"),
+  },
+  {
+    id: "11",
+    title: "Workshop in 3D và mô phỏng kiến trúc",
+    center: "Trung tâm mô hình thực nghiệm",
+    centerColor: "#06B6D4",
+    eventType: "class",
+    description:
+      "Workshop thực hành in 3D và mô phỏng không gian kiến trúc bằng công nghệ hiện đại",
+    location: "P.202",
+    startDate: new Date("2026-06-17T14:00:00"),
+    endDate: new Date("2026-06-17T17:00:00"),
+  },
+  {
+    id: "12",
+    title: "Trình diễn thời trang ứng dụng vật liệu tái chế",
+    center: "Trung tâm thời trang",
+    centerColor: "#EC4899",
+    eventType: "event",
+    description:
+      "Buổi trình diễn thời trang với các thiết kế sáng tạo từ vật liệu tái chế và bền vững",
+    location: "P.201",
+    startDate: new Date("2026-06-20T15:00:00"),
+    endDate: new Date("2026-06-20T18:00:00"),
   },
 ];

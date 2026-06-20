@@ -2,7 +2,14 @@
 import { events } from '../data/events';
 import EventCard from './EventCard.astro';
 
-const centers = ['Nội Thất', 'Điêu Khắc', 'In & Ấn Loát', 'Đào Tạo'];
+const centers = [
+  'Trung tâm thiết kế nội ngoại thất',
+  'Trung tâm điêu khắc',
+  'Trung tâm in và ấn loát nghệ thuật',
+  'Trung tâm quản lý và đào tạo',
+  'Trung tâm mô hình thực nghiệm',
+  'Trung tâm thời trang',
+];
 
 const sorted = [...events].sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
 
