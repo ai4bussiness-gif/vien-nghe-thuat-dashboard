@@ -110,16 +110,6 @@ export const spaceBookings: SpaceBooking[] = [
     status: "approved",
   },
   {
-    id: "sb5",
-    spaceId: "p101",
-    center: "In & Ấn Loát",
-    title: "Workshop in lụa",
-    date: new Date("2026-06-19T00:00:00Z"),
-    startTime: "09:00",
-    endTime: "12:00",
-    status: "pending",
-  },
-  {
     id: "sb6",
     spaceId: "p202",
     center: "Nội Thất",
@@ -128,16 +118,6 @@ export const spaceBookings: SpaceBooking[] = [
     startTime: "14:00",
     endTime: "16:00",
     status: "approved",
-  },
-  {
-    id: "sb7",
-    spaceId: "p301",
-    center: "Đào Tạo",
-    title: "Khóa thiết kế đồ họa",
-    date: new Date("2026-06-20T00:00:00Z"),
-    startTime: "09:00",
-    endTime: "12:00",
-    status: "pending",
   },
   {
     id: "sb8",

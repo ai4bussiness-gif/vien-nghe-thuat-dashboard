@@ -24,4 +24,4 @@ const { title = 'Dashboard Viện Nghệ Thuật' } = Astro.props;
 	</body>
 </html>
 
-<script>(function(){var b=document.getElementById('theme-toggle');if(!b)return;var h=document.documentElement;var s=document.getElementById('icon-sun');var m=document.getElementById('icon-moon');function t(d){h.classList.toggle('dark',d);localStorage.setItem('theme',d?'dark':'light');if(s)s.classList.toggle('hidden',d);if(m)m.classList.toggle('hidden',!d)}t(h.classList.contains('dark'));b.onclick=function(){t(!h.classList.contains('dark'))}})()</script>
+<script>(function(){var b=document.getElementById('theme-toggle');if(!b)return;var h=document.documentElement;var s=document.getElementById('icon-sun');var m=document.getElementById('icon-moon');function t(d){h.classList.toggle('dark',d);localStorage.setItem('theme',d?'dark':'light');if(s)s.classList.toggle('hidden',d);if(m)m.classList.toggle('hidden',!d)}t(h.classList.contains('dark'));b.addEventListener('click',function(){t(!h.classList.contains('dark'))})})()</script>

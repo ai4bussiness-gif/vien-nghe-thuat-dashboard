@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tết Đoan Ngọ — Viện Nghệ Thuật</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: 20px;
+}
+
+.card {
+  width: 1080px;
+  min-height: 1080px;
+  background: linear-gradient(145deg, #faf6ef 0%, #f0e8d8 50%, #e8dcc8 100%);
+  padding: 70px 80px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Noto Serif', 'Times New Roman', serif;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* Decorative top border */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #8B4513 0%, #D4A574 30%, #8B4513 60%, #F5DEB3 100%);
+}
+
+/* Corner decorative elements */
+.corner-tl, .corner-tr, .corner-bl, .corner-br {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-color: #8B4513;
+  opacity: 0.3;
+}
+.corner-tl { top: 20px; left: 20px; border-top: 2px solid; border-left: 2px solid; }
+.corner-tr { top: 20px; right: 20px; border-top: 2px solid; border-right: 2px solid; }
+.corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid; border-left: 2px solid; }
+.corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Ornamental divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8B4513, transparent);
+}
+.divider-dot {
+  color: #8B4513;
+  font-size: 14px;
+  letter-spacing: 8px;
+}
+
+/* Content */
+.badge {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #8B4513;
+  border: 1px solid #8B4513;
+  padding: 6px 20px;
+  margin-bottom: 30px;
+}
+
+.date {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #a08060;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #3d2b1a;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #8B4513;
+  margin-bottom: 30px;
+}
+
+.body-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #3d2b1a;
+  text-align: justify;
+}
+
+.body-text p {
+  margin-bottom: 18px;
+  text-indent: 30px;
+}
+
+.body-text p:first-child {
+  text-indent: 0;
+}
+
+.body-text p:first-child::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  margin-right: 8px;
+  margin-top: 4px;
+  color: #8B4513;
+}
+
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #6b4f30;
+  text-align: center;
+  padding: 20px 0;
+  margin: 20px 0;
+  border-top: 1px solid #d4c4a8;
+  border-bottom: 1px solid #d4c4a8;
+}
+
+.footer {
+  position: absolute;
+  bottom: 40px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #d4c4a8;
+  padding-top: 20px;
+}
+
+.footer-left {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: #8B4513;
+  letter-spacing: 2px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer-right .tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8B4513;
+  border: 1px solid #d4c4a8;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+/* Background decoration */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.04;
+  background: #8B4513;
+}
+.bg-circle-1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+.bg-circle-2 { width: 250px; height: 250px; bottom: 50px; left: -50px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="corner-tl"></div>
+  <div class="corner-tr"></div>
+  <div class="corner-bl"></div>
+  <div class="corner-br"></div>
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+
+  <div class="badge">Góc Nhìn Văn Hóa</div>
+  <div class="date">19 Tháng Sáu, 2026 — Tết Đoan Ngọ</div>
+  <h1>Ngày giữa trưa</h1>
+  <div class="subtitle">Góc nhìn nghệ thuật về Tết Đoan Ngọ</div>
+
+  <div class="divider"><span class="divider-dot">✦ ✦ ✦</span></div>
+
+  <div class="body-text">
+    <p>Có những thời khắc trong năm mà trời đất như nén lại toàn bộ khí lực vào một điểm duy nhất. Mùng Năm tháng Năm âm lịch là một trong số ấy. Buổi trưa không bóng, nắng đứng thẳng, khí dương leo đến tận cùng trước khi cong xuống theo vòng tuần hoàn bất tận. Dân gian gọi đó là giờ Ngọ chính Ngọ, khoảnh khắc mà ranh giới giữa thế giới người và thế giới vô hình mỏng manh nhất trong năm.</p>
+
+    <p>Tết Đoan Ngọ sinh ra ngoài đồng, không ở cung vua. Người nông dân Việt, sau bao đời nhìn sâu bọ tàn phá mùa màng, đã dựng nên một lễ tết bằng chính sự quan sát và trí tuệ tích lũy: rượu nếp lên men đỏ au như máu đất, bánh tro nâu sậm gói trong lá dong, chùm vải thiều căng tròn đỏ thắm. Tất cả đều mang màu sắc của lửa, của sức nóng giữa hạ, của ý chí đẩy lùi cái hữu hại ra khỏi thân thể và mùa màng.</p>
+
+    <div class="quote">"Bóng người in xuống đất không còn đổ dài, như thể con người và mặt trời đang đứng cùng một trục thẳng đứng."</div>
+
+    <p>Trong tư duy tạo hình dân gian, hình ảnh người nông dân giơ tay diệt sâu bọ lúc trưa đứng bóng là một nghi lễ của thân xác. Một cử chỉ có hình khối, có điêu khắc: bóng người in xuống đất không còn đổ dài, như thể con người và mặt trời đang đứng cùng một trục thẳng đứng. Đoan Ngọ là khoảnh khắc con người hiện diện trọn vẹn nhất giữa thiên nhiên.</p>
+
+    <p>Không có trống rộn, không có đèn hoa. Tết Đoan Ngọ lặng lẽ như một bức tranh thủy mặc còn chưa khô mực, nhưng thấm vào lòng một tầng ý nghĩa mà trăm năm không phai.</p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Viện Nghệ Thuật — Đại Học Kiến Trúc Hà Nội</div>
+    <div class="footer-right">
+      <span class="tag">Văn hóa</span>
+      <span class="tag">Truyền thống</span>
+      <span class="tag">Đoan Ngọ</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ResearchCard from '../components/ResearchCard.astro';
+import { researchProjects, centerColors } from '../data/research';
+
+const centers = ['Tất cả', ...Object.keys(centerColors)] as const;
+---
+
+<Layout title="Nghiên cứu — Viện Nghệ Thuật">
+  <Header title="Nghiên cứu — Viện Nghệ Thuật" subtitle="Đại Học Kiến Trúc Hà Nội" />
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Hero -->
+    <section class="mb-10">
+      <div class="w-full h-36 bg-gradient-to-r from-emerald-50 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-2xl flex items-center justify-center mb-6">
+        <div class="text-center px-4">
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            🔬 Nghiên cứu & Dự án
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Các dự án nghiên cứu đang triển khai tại Viện Nghệ Thuật — nơi lý thuyết gặp gỡ thực hành, truyền thống giao thoa cùng công nghệ.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-6 bg-emerald-500 rounded-full"></div>
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">Dự án</h2>
+      </div>
+      <div class="flex flex-wrap gap-2" id="research-filters">
+        {centers.map((center) => (
+          <button
+            data-filter={center === 'Tất cả' ? 'all' : center}
+            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors
+              {center === 'Tất cả'
+                ? 'active-filter bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}"
+          >
+            {center}
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- Grid -->
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5" id="research-grid">
+        {researchProjects.map((project) => (
+          <ResearchCard project={project} />
+        ))}
+      </div>
+      <div id="research-empty" class="hidden text-center py-16 text-gray-400">
+        <svg class="w-12 h-12 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <p class="text-sm font-medium">Không có dự án nào</p>
+      </div>
+    </section>
+
+    <!-- Tổng quan nghiên cứu section -->
+    <section class="mt-16 border-t border-gray-200 dark:border-gray-700 pt-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Tổng quan nghiên cứu</h2>
+      <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 space-y-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="text-center p-4 bg-blue-50 dark:bg-blue-950/40 rounded-lg">
+            <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">{researchProjects.filter(p => p.status === 'Đang thực hiện').length}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Đang thực hiện</div>
+          </div>
+          <div class="text-center p-4 bg-green-50 dark:bg-green-950/40 rounded-lg">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">{researchProjects.filter(p => p.status === 'Hoàn thành').length}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Hoàn thành</div>
+          </div>
+          <div class="text-center p-4 bg-purple-50 dark:bg-purple-950/40 rounded-lg">
+            <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">{researchProjects.filter(p => p.status === 'Đề xuất').length}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Đề xuất</div>
+          </div>
+          <div class="text-center p-4 bg-amber-50 dark:bg-amber-950/40 rounded-lg">
+            <div class="text-2xl font-bold text-amber-600 dark:text-amber-400">{researchProjects.length}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Tổng dự án</div>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+          Viện Nghệ Thuật hiện đang triển khai <strong>{researchProjects.filter(p => p.status === 'Đang thực hiện' || p.status === 'Đề xuất').length} dự án</strong> nghiên cứu và ứng dụng trên tất cả các lĩnh vực: thiết kế nội thất, điêu khắc, in ấn và đào tạo. Các dự án được thực hiện bởi giảng viên, nghệ sĩ và sinh viên — với sự phối hợp liên ngành giữa các trung tâm.
+        </p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 italic">
+          Mọi thông tin chi tiết về dự án vui lòng liên hệ văn phòng Viện để được cập nhật kế hoạch đầy đủ.
+        </p>
+      </div>
+    </section>
+
+    <!-- Empty state for PDF plans (note to user) -->
+    <section class="mt-8">
+      <div class="bg-yellow-50 dark:bg-yellow-950/40 border border-yellow-300 dark:border-yellow-800 rounded-xl p-4 text-sm text-gray-600 dark:text-gray-300">
+        <p class="font-medium text-yellow-800 dark:text-yellow-300 mb-1">📌 Về file PDF kế hoạch</p>
+        <p class="text-xs sm:text-sm">Các link PDF (Xem kế hoạch chi tiết) trong dự án hiện là link mẫu. Khi anh có file PDF thật, đặt vào thư mục <code class="bg-yellow-100 dark:bg-yellow-900/50 px-1 rounded">public/research/</code> và tôi sẽ cập nhật link tương ứng.</p>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<script>
+  // Filter logic for research page
+  const filters = document.querySelectorAll('#research-filters .filter-btn');
+  const cards = document.querySelectorAll('#research-grid > div');
+  const emptyState = document.getElementById('research-empty');
+
+  function filterResearch(center) {
+    let visible = 0;
+    filters.forEach(btn => {
+      const isActive = btn.dataset.filter === center;
+      btn.classList.toggle('active-filter', isActive);
+      if (isActive) {
+        btn.className = btn.className.replace(/bg-gray-100.*?(?=\s|$)/, 'bg-gray-900 text-white dark:bg-white dark:text-gray-900');
+      } else {
+        btn.className = btn.className.replace(/bg-gray-900\s/, 'bg-gray-100 ').replace(/text-white\s/, 'text-gray-600 ');
+      }
+    });
+    cards.forEach(card => {
+      const cardCenter = card.dataset.center;
+      const match = center === 'all' || cardCenter === center;
+      card.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    emptyState?.classList.toggle('hidden', visible > 0);
+  }
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => filterResearch(btn.dataset.filter ?? 'all'));
+  });
+</script>

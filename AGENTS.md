@@ -36,8 +36,10 @@ Out of bounds:
 - [x] PHASE 1: SHAPE
 - [x] Vòng 1: Claude — Tạo Astro project + Tailwind (✅ build OK)
 - [x] Vòng 2: Claude — Schema Supabase SQL (✅ events, spaces, bookings)
-- [ ] Vòng 3: Claude — Component EventCard + filter
-- [ ] Vòng 4: Claude — Component lịch không gian
+- [x] Vòng 3: Claude — Component EventCard + filter (✅ filter 4 trung tâm, timeline, dark mode)
+- [x] Vòng 4: Claude — Component lịch không gian (✅ weekly grid + mobile cards + dark mode)
+- [x] Vòng 4.1: Claude — Update data lên tuần 15-21/06/2026
+- [x] Vòng 4.2: Claude — About page + CenterCard tích hợp nội dung từ VIEN_PROFILE.md
 - [x] Vòng 5: Git + Deploy Cloudflare (✅ GitHub + Worker live)
 
 ## Cycle 1 — Kết quả
@@ -45,6 +47,45 @@ Out of bounds:
 - GitHub: https://github.com/ai4bussiness-gif/vien-nghe-thuat-dashboard
 - Deploy: Cloudflare Worker (static assets)
 - Dùng: 10/10 Claude calls, ~$0.97 token cost
+
+## Cycle 2 — "Nghiên cứu + Booking + Cron"
+Appetite: Tự động (Hermes scripts)
+Scope:
+1. Trang Nghiên cứu với 8 dự án + filter + tiến độ + phối hợp
+2. Header: bỏ #events/#spaces, thêm Nghiên cứu
+3. Mobile menu: hamburger + dropdown (trang chủ, giới thiệu, nghiên cứu)
+4. Hệ thống booking không gian qua Telegram (scripts/booking.py)
+5. Cron job bản tin sáng 8:00 (scripts/morning_digest.py + Hermes cron)
+6. DNS: hướng dẫn trỏ dashboard.viennghethuat.edu.vn → Cloudflare
+
+## Scripts (thư mục scripts/)
+| File | Chức năng | Cách dùng |
+|------|-----------|-----------|
+| `booking.py` | Quản lý đặt phòng | `python booking.py add/check/list/cancel` |
+| `bookings.json` | CSDL booking dạng JSON | Booking script tự cập nhật |
+| `morning_digest.py` | Bản tin sáng hôm nay | Cron job chạy 8:00 sáng |
+| `sync_bookings.py` | Đồng bộ booking.json → spaces.ts | Chạy trước khi build deploy |
+
+## Booking workflow (qua Telegram)
+Khi anh nhắn đặt phòng:
+1. Tôi kiểm tra trống: `python booking.py check <date> <spaceId>`
+2. Nếu trống → đặt: `python booking.py add <date> <spaceId> <center> <title> <start> <end>`
+3. Đồng bộ: `python sync_bookings.py` + build + deploy để dashboard cập nhật
+
+## Cron jobs
+- **8:00 sáng hàng ngày** → Bản tin sáng (sự kiện hôm nay + 7 ngày tới + không gian trống)
+  Job ID: 1a85beb7f019
+
+## DNS
+- Domain chính: `dashboard.viennghethuat.edu.vn`
+- Hiện tại: `vien-nghe-thuat.ai4bussiness.workers.dev`
+- Cần trỏ: CNAME `dashboard` → `vien-nghe-thuat.ai4bussiness.workers.dev` (tại nhanhhoa.com)
+
+## Loại bỏ khỏi scope
+- ❌ Gallery ảnh sự kiện
+- ❌ Zalo notification
+- ❌ Hiển thị khóa học
+- ❌ Đăng ký qua form (chỉ qua Telegram)
 
 ## Center colors
 - Nội thất: #3B82F6 (xanh dương)
