@@ -1,135 +1,50 @@
 {
   "spaces": [
     {
-      "id": "p101",
-      "name": "P.101",
+      "id": "tang1-phong",
+      "name": "Phòng Viện",
+      "floor": 1,
+      "type": "office",
+      "capacity": 15,
+      "description": "Phòng làm việc chính của Viện Nghệ Thuật"
+    },
+    {
+      "id": "tang1-trienlam",
+      "name": "Không gian triển lãm Tầng 1",
       "floor": 1,
       "type": "exhibition",
-      "capacity": 50,
-      "description": "Phòng triển lãm tầng 1, khu A"
-    },
-    {
-      "id": "p102",
-      "name": "P.102",
-      "floor": 1,
-      "type": "exhibition",
-      "capacity": 40,
-      "description": "Phòng triển lãm tầng 1, khu B"
-    },
-    {
-      "id": "p201",
-      "name": "P.201",
-      "floor": 2,
-      "type": "event",
-      "capacity": 100,
-      "description": "Hội trường sự kiện tầng 2"
-    },
-    {
-      "id": "p202",
-      "name": "P.202",
-      "floor": 2,
-      "type": "event",
       "capacity": 80,
-      "description": "Phòng hội thảo tầng 2"
+      "description": "Không gian triển lãm, trưng bày tầng 1"
     },
     {
-      "id": "p301",
-      "name": "P.301",
+      "id": "tang2",
+      "name": "Không gian thông tầng 2",
+      "floor": 2,
+      "type": "event",
+      "capacity": 150,
+      "description": "Tầng thông suốt 300m² — sự kiện, triển lãm, hội thảo"
+    },
+    {
+      "id": "tang3",
+      "name": "Không gian thông tầng 3",
       "floor": 3,
       "type": "class",
-      "capacity": 30,
-      "description": "Phòng học thực hành tầng 3"
+      "capacity": 100,
+      "description": "Tầng thông suốt — lớp học, workshop, thực hành"
     }
   ],
   "bookings": [
     {
       "id": 1,
-      "spaceId": "p101",
-      "center": "Trung tâm thiết kế nội ngoại thất",
-      "title": "Triển lãm nội thất đương đại",
-      "date": "2026-06-16",
-      "startTime": "09:00",
-      "endTime": "17:00",
-      "status": "approved",
-      "createdBy": "system"
-    },
-    {
-      "id": 2,
-      "spaceId": "p102",
-      "center": "Trung tâm điêu khắc",
-      "title": "Trưng bày điêu khắc",
-      "date": "2026-06-16",
+      "spaceId": "tang1-phong",
+      "center": "Viện Nghệ Thuật",
+      "title": "Họp toàn trung tâm",
+      "date": "2026-06-26",
       "startTime": "10:00",
-      "endTime": "16:00",
-      "status": "approved",
-      "createdBy": "system"
-    },
-    {
-      "id": 3,
-      "spaceId": "p201",
-      "center": "Trung tâm quản lý và đào tạo",
-      "title": "Hội thảo kỹ năng hiện đại",
-      "date": "2026-06-17",
-      "startTime": "08:30",
       "endTime": "11:30",
-      "status": "approved",
-      "createdBy": "system"
-    },
-    {
-      "id": 4,
-      "spaceId": "p301",
-      "center": "Trung tâm điêu khắc",
-      "title": "Lớp điêu khắc cơ bản",
-      "date": "2026-06-18",
-      "startTime": "14:00",
-      "endTime": "17:00",
-      "status": "approved",
-      "createdBy": "system"
-    },
-    {
-      "id": 5,
-      "spaceId": "p101",
-      "center": "Trung tâm in và ấn loát nghệ thuật",
-      "title": "Workshop in lụa",
-      "date": "2026-06-19",
-      "startTime": "09:00",
-      "endTime": "12:00",
-      "status": "pending",
-      "createdBy": "system"
-    },
-    {
-      "id": 6,
-      "spaceId": "p202",
-      "center": "Trung tâm thiết kế nội ngoại thất",
-      "title": "Họp dự án nội thất",
-      "date": "2026-06-19",
-      "startTime": "14:00",
-      "endTime": "16:00",
-      "status": "approved",
-      "createdBy": "system"
-    },
-    {
-      "id": 7,
-      "spaceId": "p301",
-      "center": "Trung tâm quản lý và đào tạo",
-      "title": "Khóa thiết kế đồ họa",
-      "date": "2026-06-20",
-      "startTime": "09:00",
-      "endTime": "12:00",
-      "status": "pending",
-      "createdBy": "system"
-    },
-    {
-      "id": 8,
-      "spaceId": "p201",
-      "center": "Trung tâm in và ấn loát nghệ thuật",
-      "title": "Triển lãm in nghệ thuật",
-      "date": "2026-06-21",
-      "startTime": "10:00",
-      "endTime": "18:00",
       "status": "approved",
       "createdBy": "system"
     }
   ],
-  "nextId": 10
+  "nextId": 2
 }

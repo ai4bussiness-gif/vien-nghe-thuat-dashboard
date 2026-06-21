@@ -102,15 +102,20 @@ const centers = ['Tất cả', ...Object.keys(centerColors)] as const;
   const cards = document.querySelectorAll('#research-grid > div');
   const emptyState = document.getElementById('research-empty');
 
+  const activeClasses = ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'];
+  const inactiveClasses = ['bg-gray-100', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-200', 'dark:hover:bg-gray-700'];
+
   function filterResearch(center) {
     let visible = 0;
     filters.forEach(btn => {
       const isActive = btn.dataset.filter === center;
       btn.classList.toggle('active-filter', isActive);
       if (isActive) {
-        btn.className = btn.className.replace(/bg-gray-100.*?(?=\s|$)/, 'bg-gray-900 text-white dark:bg-white dark:text-gray-900');
+        btn.classList.remove(...inactiveClasses);
+        btn.classList.add(...activeClasses);
       } else {
-        btn.className = btn.className.replace(/bg-gray-900\s/, 'bg-gray-100 ').replace(/text-white\s/, 'text-gray-600 ');
+        btn.classList.remove(...activeClasses);
+        btn.classList.add(...inactiveClasses);
       }
     });
     cards.forEach(card => {

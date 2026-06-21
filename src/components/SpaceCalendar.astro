@@ -2,6 +2,7 @@
 import { spaces, spaceBookings, type SpaceBooking } from '../data/spaces';
 
 const CENTER_COLORS: Record<string, string> = {
+  'Viện Nghệ Thuật': '#6366F1',
   'Trung tâm thiết kế nội ngoại thất': '#3B82F6',
   'Trung tâm điêu khắc': '#10B981',
   'Trung tâm in và ấn loát nghệ thuật': '#F59E0B',
@@ -14,12 +15,13 @@ const TYPE_ICONS: Record<string, string> = {
   exhibition: '🖼️',
   event: '🎪',
   class: '📚',
+  office: '🏢',
 };
 
 const FLOOR_LABELS: Record<number, string> = {
-  1: 'Tầng 1 — Triển lãm',
-  2: 'Tầng 2 — Sự kiện',
-  3: 'Tầng 3 — Lớp học',
+  1: 'Tầng 1 — Phòng Viện + Triển lãm',
+  2: 'Tầng 2 — Không gian thông (300m²)',
+  3: 'Tầng 3 — Không gian thông',
 };
 
 const DAYS = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];

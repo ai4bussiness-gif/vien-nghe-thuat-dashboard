@@ -76,7 +76,7 @@ def main():
     if free_spaces:
         lines.append(f"**🏛️ Không gian trống hôm nay:**")
         for s in free_spaces:
-            floor_label = {1: "Triển lãm", 2: "Sự kiện", 3: "Lớp học"}.get(s['floor'], '')
+            floor_label = {1: "Phòng Viện + Triển lãm", 2: "Không gian thông 300m²", 3: "Không gian thông"}.get(s['floor'], '')
             lines.append(f"• {s['name']} — Tầng {s['floor']} ({floor_label}) — {s['capacity']} người")
         lines.append("")
 
