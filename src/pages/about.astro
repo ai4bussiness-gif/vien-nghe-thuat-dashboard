@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CenterCard from '../components/CenterCard.astro';
+
+const centers = [
+  {
+    name: 'Trung tâm Thiết Kế Nội Thất',
+    description: 'Không gian sống là trang thơ đầu tiên mà con người viết lên cuộc đời mình. Trung tâm đào tạo những nhà thiết kế thấu hiểu chiều sâu cảm xúc lẫn tính năng kỹ thuật của không gian — từ căn hộ đô thị đến biệt thự nghỉ dưỡng, từ phòng trưng bày nghệ thuật đến không gian làm việc sáng tạo.',
+    color: '#3B82F6',
+    colorClass: 'blue',
+  },
+  {
+    name: 'Trung tâm Điêu Khắc',
+    description: 'Điêu khắc là nghệ thuật chiếm lĩnh không gian. Chương trình đan xen giữa truyền thống điêu khắc cổ điển châu Âu và tư duy đương đại — từ tượng chân dung đến sắp đặt không gian, từ phù điêu kiến trúc đến điêu khắc công cộng.',
+    color: '#10B981',
+    colorClass: 'emerald',
+  },
+  {
+    name: 'Trung tâm In & Ấn Loát',
+    description: 'Gìn giữ và phát triển kỹ thuật in truyền thống như khắc gỗ, khắc kẽm, in lưới và in lithography, đồng thời tích hợp công nghệ in kỹ thuật số. Nơi con chữ được đặt vào vị trí xứng đáng: một hình thức nghệ thuật độc lập.',
+    color: '#F59E0B',
+    colorClass: 'amber',
+  },
+  {
+    name: 'Trung tâm Đào Tạo & Bồi Dưỡng',
+    description: 'Cánh tay nối dài của Viện đến với cộng đồng — từ chương trình ngắn hạn cho người yêu nghệ thuật đến khóa bồi dưỡng chuyên sâu dành cho giáo viên mỹ thuật và chuyên gia. Điều phối hợp tác quốc tế và dự án nghệ thuật cộng đồng.',
+    color: '#8B5CF6',
+    colorClass: 'purple',
+  },
+];
+
+const values = [
+  { name: 'Chính trực học thuật', desc: 'Mọi tác phẩm, mọi công trình đều xuất phát từ tư duy độc lập và lao động thực sự' },
+  { name: 'Xuất sắc kỹ thuật', desc: 'Kỹ năng thủ công và kỹ thuật số được rèn luyện đến mức thuần thục' },
+  { name: 'Bản sắc văn hóa', desc: 'Di sản nghệ thuật Việt Nam là nguồn cảm hứng không bao giờ cạn' },
+  { name: 'Tinh thần cộng đồng', desc: 'Nghệ thuật là cầu nối — giữa con người, giữa thế hệ, giữa ký ức và tương lai' },
+];
+
+const activities = [
+  { field: 'Đào tạo chính quy', form: 'Cử nhân 4 năm, Thạc sĩ', target: 'Sinh viên đại học, sau đại học' },
+  { field: 'Bồi dưỡng ngắn hạn', form: 'Khóa học 1–3 tháng', target: 'Chuyên gia, người đi làm' },
+  { field: 'Workshop nghệ thuật', form: '1–5 buổi', target: 'Cộng đồng yêu nghệ thuật' },
+  { field: 'Triển lãm & Sự kiện', form: 'Định kỳ và đột xuất', target: 'Công chúng' },
+  { field: 'Nghiên cứu & Xuất bản', form: 'Tạp chí, kỷ yếu, sách', target: 'Giới học thuật' },
+  { field: 'Dự án cộng đồng', form: 'Nghệ thuật công cộng, bích họa', target: 'Cộng đồng đô thị' },
+  { field: 'Hợp tác doanh nghiệp', form: 'Thiết kế theo đặt hàng, tư vấn', target: 'Doanh nghiệp, tổ chức' },
+  { field: 'Hợp tác quốc tế', form: 'Trao đổi sinh viên, residency', target: 'Đối tác nước ngoài' },
+];
+---
+
+<Layout title="Giới thiệu — Viện Nghệ Thuật">
+  <Header title="Giới thiệu Viện Nghệ Thuật" subtitle="Đại Học Kiến Trúc Hà Nội" />
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <!-- Hero -->
+    <section>
+      <div class="w-full h-48 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-2xl flex items-center justify-center mb-6">
+        <div class="text-center px-4">
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Viện Nghệ Thuật
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Đại Học Kiến Trúc Hà Nội</p>
+          <p class="text-xs text-indigo-600 dark:text-indigo-400 italic">
+            Nơi nghệ thuật gặp gỡ kiến trúc — nơi truyền thống giao thoa cùng đương đại.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tổng quan -->
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+        Tổng Quan
+      </h2>
+      <div class="space-y-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-4xl">
+        <p>
+          Viện Nghệ Thuật — Đại Học Kiến Trúc Hà Nội là một đơn vị học thuật và thực hành nghệ thuật chuyên sâu, được thành lập trong lòng một trong những trường đại học kiến trúc uy tín hàng đầu Việt Nam. Tọa lạc tại thủ đô Hà Nội — mảnh đất nghìn năm văn hiến, nơi hội tụ tinh hoa của kiến trúc Pháp thuộc địa, kiến trúc truyền thống Việt và những luồng gió đương đại — Viện mang trong mình sứ mệnh nuôi dưỡng và phát triển những thế hệ nghệ sĩ, nhà thiết kế, và nghệ nhân có chiều sâu tư duy lẫn sự thành thục về kỹ thuật.
+        </p>
+        <p>
+          Ra đời từ niềm tin rằng nghệ thuật không tồn tại tách biệt khỏi không gian sống, Viện Nghệ Thuật kiên định theo đuổi mô hình đào tạo liên ngành — nơi điêu khắc đối thoại cùng kiến trúc, thiết kế nội thất cộng sinh với nghệ thuật thị giác, và kỹ nghệ in ấn giữ gìn vẻ đẹp của con chữ trong từng nét khắc.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sứ mệnh - Tầm nhìn - Giá trị -->
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+        Sứ Mệnh — Tầm Nhìn — Giá Trị Cốt Lõi
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+          <h3 class="font-semibold text-indigo-600 dark:text-indigo-400 mb-3 text-xs uppercase tracking-widest">Sứ Mệnh</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Kiến tạo môi trường học thuật và sáng tạo nơi nghệ thuật được thực hành với tinh thần nghiêm cẩn, được giảng dạy với tấm lòng trân trọng, và được ứng dụng với tầm nhìn phục vụ cộng đồng. Chúng tôi tạo ra không gian để tài năng được giải phóng, kỹ năng được rèn giũa, và bản sắc văn hóa Việt được chắt lọc qua lăng kính của ngôn ngữ tạo hình đương đại.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+          <h3 class="font-semibold text-emerald-600 dark:text-emerald-400 mb-3 text-xs uppercase tracking-widest">Tầm Nhìn</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Trở thành trung tâm nghệ thuật và thiết kế hàng đầu khu vực — nơi những ý tưởng sáng tạo được hiện thực hóa thành tác phẩm có giá trị lâu bền, nơi cộng đồng nghệ thuật Việt Nam và quốc tế gặp gỡ, trao đổi và cùng nhau viết tiếp những trang sử mới của nghệ thuật tạo hình.
+          </p>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 w-48">Giá trị</th>
+              <th class="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {values.map((v, i) => (
+              <tr class={`border-t border-gray-100 dark:border-gray-700 ${i % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50/50 dark:bg-gray-800/50'}`}>
+                <td class="px-4 py-3 font-medium text-gray-800 dark:text-gray-200">{v.name}</td>
+                <td class="px-4 py-3 text-gray-600 dark:text-gray-300">{v.desc}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Bốn trung tâm -->
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+        Bốn Trung Tâm Chuyên Ngành
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        {centers.map((center) => (
+          <CenterCard
+            name={center.name}
+            description={center.description}
+            color={center.color}
+            colorClass={center.colorClass}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Lĩnh vực hoạt động -->
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+        Lĩnh Vực Hoạt Động
+      </h2>
+      <div class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Lĩnh vực</th>
+              <th class="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 hidden sm:table-cell">Hình thức</th>
+              <th class="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 hidden md:table-cell">Đối tượng</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activities.map((a, i) => (
+              <tr class={`border-t border-gray-100 dark:border-gray-700 ${i % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50/50 dark:bg-gray-800/50'}`}>
+                <td class="px-4 py-3 font-medium text-gray-800 dark:text-gray-200">{a.field}</td>
+                <td class="px-4 py-3 text-gray-600 dark:text-gray-300 hidden sm:table-cell">{a.form}</td>
+                <td class="px-4 py-3 text-gray-500 dark:text-gray-400 hidden md:table-cell">{a.target}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Liên hệ -->
+    <footer class="border-t border-gray-200 dark:border-gray-700 pt-8 pb-4">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Liên Hệ</h2>
+      <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-4">
+          Viện Nghệ Thuật — Đại Học Kiến Trúc Hà Nội
+        </p>
+        <div class="space-y-2.5 text-sm text-gray-600 dark:text-gray-300">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Hà Nội, Việt Nam</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <span>Điện thoại: (liên hệ văn phòng)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <a href="mailto:info@viennghethuat.edu.vn" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              info@viennghethuat.edu.vn
+            </a>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Thứ Hai – Thứ Sáu, 8:00 – 17:00</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</Layout>
