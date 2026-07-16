@@ -44,7 +44,29 @@
       "endTime": "11:30",
       "status": "approved",
       "createdBy": "system"
+    },
+    {
+      "id": 2,
+      "spaceId": "tang1-trienlam",
+      "center": "Viện Nghệ Thuật",
+      "title": "Ra mắt BST Khăn Di sản \"Nghìn Xưa Lưu Dấu\"",
+      "date": "2026-06-26",
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "status": "approved",
+      "createdBy": "system"
+    },
+    {
+      "id": 3,
+      "spaceId": "tang1-trienlam",
+      "center": "Trung tâm in và ấn loát nghệ thuật",
+      "title": "Khai giảng lớp Xưởng Nhí",
+      "date": "2026-07-18",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "status": "approved",
+      "createdBy": "system"
     }
   ],
-  "nextId": 2
+  "nextId": 4
 }

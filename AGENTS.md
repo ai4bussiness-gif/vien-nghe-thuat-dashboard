@@ -74,7 +74,36 @@ Khi anh nhắn đặt phòng:
 
 ## Cron jobs
 - **8:00 sáng hàng ngày** → Bản tin sáng (sự kiện hôm nay + 7 ngày tới + không gian trống)
-  Job ID: 1a85beb7f019
+  Job ID: `1a85beb7f019` | Type: `no_agent=true` (script chạy độc lập)
+  **Script path:** `~/AppData/Local/hermes/scripts/morning_digest.py`
+  **Data đọc từ:** `projects/vien-nghe-thuat/scripts/bookings.json` (hardcode DB_PATH)
+
+## 📍 File map — Biết chính xác file nào ở đâu
+
+| File | Vị trí chính | Vai trò | Cron dùng? |
+|------|-------------|---------|-----------|
+| `booking.py` | `projects/vien-nghe-thuat/scripts/` | Quản lý đặt phòng (Telegram) | ❌ |
+| `bookings.json` | `projects/vien-nghe-thuat/scripts/` | **Single source of truth** cho booking | ✅ (đọc qua DB_PATH) |
+| `morning_digest.py` | `projects/vien-nghe-thuat/scripts/` | Script bản tin sáng (bản dev) | ❌ |
+| `morning_digest.py` | `~/AppData/Local/hermes/scripts/` | **Bản cron chạy** (copy từ project ra) | ✅ |
+| `sync_bookings.py` | `projects/vien-nghe-thuat/scripts/` | Đồng bộ booking.json → spaces.ts | ❌ |
+
+**Nguyên tắc:** Chỉ `bookings.json` là 1 file duy nhất (single source of truth). Mọi thứ khác đều đọc từ đó. Không tạo thêm bản sao `bookings.json` ở đâu khác.
+
+## ⚠️ Bài học — Nguyên tắc đồng bộ data
+
+**Vấn đề đã gặp (24/06/2026):** Script `morning_digest.py` ở `hermes/scripts/` và `projects/scripts/` bị lệch nhau. Cron dùng bản cũ → bản tin sáng mất.
+
+**Quy tắc cứng:**
+
+1. **1 source of truth duy nhất** — Mọi dữ liệu (`bookings.json`, config, ...) chỉ ở 1 chỗ duy nhất trong project. Script cron/Khác phải hardcode DB_PATH trỏ về đó.
+2. **Không copy data — chỉ reference** — Không copy `bookings.json` hay data nào ra ngoài thư mục project. Dùng absolute path để đọc xuyên từ project.
+3. **Khi update data → verify cron** — Sau khi sửa `bookings.json`, test cron script chạy thủ công: `python ~/AppData/Local/hermes/scripts/morning_digest.py`
+4. **Script cron là bản sao → phải đồng bộ** — Nếu sửa code `morning_digest.py` trong project, copy ra hermes/scripts/ luôn:
+   ```
+   cp projects/vien-nghe-thuat/scripts/morning_digest.py ~/AppData/Local/hermes/scripts/
+   ```
+5. **Trước khi tạo cron job mới** — Xác định rõ script ở đâu, data ở đâu, có drift không.
 
 ## DNS
 - Domain chính: `dashboard.viennghethuat.edu.vn`

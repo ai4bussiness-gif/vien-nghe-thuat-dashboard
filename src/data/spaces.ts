@@ -61,13 +61,13 @@ export const spaces: Space[] = [
 // Week: 2026-06-22 (Mon) → 2026-06-28 (Sun)
 export const spaceBookings: SpaceBooking[] = [
   {
-    id: "sb1",
-    spaceId: "tang1-phong",
-    center: "Viện Nghệ Thuật",
-    title: "Họp toàn trung tâm",
-    date: new Date("2026-06-26T00:00:00Z"),
-    startTime: "10:00",
-    endTime: "11:30",
+    id: "sb3",
+    spaceId: "tang1-trienlam",
+    center: "Trung tâm in và ấn loát nghệ thuật",
+    title: "Khai giảng lớp Xưởng Nhí",
+    date: new Date("2026-07-18T00:00:00Z"),
+    startTime: "09:00",
+    endTime: "11:00",
     status: "approved",
   },
 ];
